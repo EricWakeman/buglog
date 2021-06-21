@@ -8,7 +8,8 @@
               {{ bug.title }}
             </p>
             <p>
-              Last Updated: {{ bugTime[0] }}
+              Last Updated: {{ bugTime[0].slice(5,7) }}-{{ bugTime[0].slice(8,10) }}-
+              {{ bugTime[0].slice(0,4) }}
             </p>
           </div>
           <div class="col-4">
