@@ -2,12 +2,12 @@
   <header>
     <Navbar />
   </header>
-  <main>
+  <main class="main-display">
     <router-view />
   </main>
   <footer>
-    <div class="bg-dark text-light text-center p-4">
-      Made with 💖 by CodeWorks
+    <div class="bg-primary text-dark text-center p-4">
+      Made with 💖 by Gremlins
     </div>
   </footer>
 </template>
@@ -26,5 +26,7 @@ export default {
 </script>
 <style lang="scss">
 @import "./assets/scss/main.scss";
-
+.main-display{
+  background-image: url('./assets/img/bugbackground.jpg');
+}
 </style>

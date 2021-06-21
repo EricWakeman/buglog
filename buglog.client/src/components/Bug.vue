@@ -1,11 +1,14 @@
 <template>
   <div class="col-md-3 m-3">
-    <div class="card hoverable" @click="loadBug" :title="bug.title">
+    <div class="card hoverable shadow" @click="loadBug" :title="bug.title">
       <div class="card-header">
         <div class="row">
           <div class="col-8">
             <p>
               {{ bug.title }}
+            </p>
+            <p>
+              Last Updated: {{ bugTime[0] }}
             </p>
           </div>
           <div class="col-4">
@@ -27,7 +30,9 @@ import { router } from '../router'
 export default {
   props: { bug: { type: Object, required: true } },
   setup(props) {
+    const bugTime = props.bug.updatedAt.split('T')
     return {
+      bugTime,
       loadBug() {
         router.push({ path: `/bugs/${props.bug.id}` })
       }
