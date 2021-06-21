@@ -1,10 +1,10 @@
 <template>
-  <div class="col-md-3 m-3">
+  <div class="col-lg-3 m-3">
     <div class="card hoverable shadow" @click="loadBug" :title="bug.title">
       <div class="card-header">
         <div class="row">
           <div class="col-8">
-            <p>
+            <p class="bug-title">
               {{ bug.title }}
             </p>
             <p>
@@ -44,6 +44,9 @@ export default {
 <style>
 .hoverable {
   cursor: pointer;
+}
+.bug-title{
+  font-size: 30px;
 }
 
 </style>

@@ -1,11 +1,11 @@
 <template>
   <div class="row">
     <div class="col-12">
-      <div class="card m-2">
+      <div class="card m-2 shadow">
         <div class="card-header justify-content-between d-flex">
           <img :src="note.creator.picture" :alt="note.creator.name" class="user-image">
           <p>{{ note.creator.name }}</p>
-          <i class="mdi mdi-trash-can-outline hoverable" title="delete note" @click="deleteNote" v-if="account.id == note.creatorId"></i>
+          <i class="mdi mdi-trash-can-outline hoverable cancan" title="delete note" @click="deleteNote" v-if="account.id == note.creatorId" height="50"></i>
         </div>
         <div class="card-body">
           <p>{{ note.body }}</p>
@@ -42,6 +42,10 @@ export default {
 <style>
 .hoverable{
   cursor: pointer;
+}
+.cancan{
+  font-size: 45px;
+
 }
 
 </style>

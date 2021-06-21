@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row" v-if="activeBug">
       <div class="col-12">
-        <div class="card m-2">
+        <div class="card m-2 shadow">
           <div class="card-header">
             <div class="row">
               <div class="col-8">

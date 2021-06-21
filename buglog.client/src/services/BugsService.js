@@ -9,15 +9,14 @@ class BugsService {
   async getAllBugs() {
     const res = await api.get('/api/bugs')
     logger.log(res.data)
-    AppState.bugs = res.data.map(b => new Bug(b))
+    AppState.allBugs = res.data.map(b => new Bug(b))
     AppState.sortedBugs = res.data.map(b => new Bug(b))
     logger.log(AppState.bugs)
   }
 
   async createBug(bugData) {
     const res = await api.post('/api/bugs', bugData)
-    AppState.bugs.push(new Bug(res.data))
-    logger.log(AppState.bugs)
+    AppState.allBugs.push(new Bug(res.data))
     router.push({ path: `/bugs/${res.data.id}` })
   }
 
@@ -31,31 +30,35 @@ class BugsService {
 
   async closeBug(id) {
     await api.delete('/api/bugs/' + id)
-    const bug = AppState.bugs.find(b => b.id === id)
+    const bug = AppState.allBugs.find(b => b.id === id)
     bug.closed = true
     if (AppState.activeBug) {
       AppState.activeBug.closed = true
     }
   }
 
+  sortMostRecent() {
+    AppState.sortedBugs = AppState.allBugs
+  }
+
   sortOpenFirst() {
-    AppState.sortedBugs = AppState.bugs.sort(function(x, y) {
+    AppState.sortedBugs = AppState.allBugs.sort(function(x, y) {
       return (x.closed === y.closed) ? 0 : x.closed ? 1 : -1
     })
   }
 
   sortClosedFirst() {
-    AppState.sortedBugs = AppState.bugs.sort(function(x, y) {
+    AppState.sortedBugs = AppState.allBugs.sort(function(x, y) {
       return (x.closed === y.closed) ? 0 : x.closed ? -1 : 1
     })
   }
 
   filterOpenOnly() {
-    AppState.sortedBugs = AppState.bugs.filter(b => !b.closed)
+    AppState.sortedBugs = AppState.allBugs.filter(b => !b.closed)
   }
 
   filterClosedOnly() {
-    AppState.sortedBugs = AppState.bugs.filter(b => b.closed)
+    AppState.sortedBugs = AppState.allBugs.filter(b => b.closed)
   }
 }
 

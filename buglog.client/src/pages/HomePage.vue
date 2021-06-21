@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid d-flex align-items-start">
+  <div class="container-fluid  align-items-start dynamic-flex">
     <div class="row">
       <CreateBug />
       <div class="col-12 mt-5">
@@ -14,6 +14,7 @@
             Sort Bugs
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item hoverable" @click="sortMostRecent" title="sort Open First">Most Recent</a>
             <a class="dropdown-item hoverable" @click="sortOpenFirst" title="sort Open First">Open First</a>
             <a class="dropdown-item hoverable" @click="sortClosedFirst" title="sort Closed First">Closed First</a>
             <a class="dropdown-item hoverable" @click="filterOpenOnly" title="filter Open Only">Only Open</a>
@@ -45,6 +46,9 @@ export default {
     })
     return {
       bugs: computed(() => AppState.sortedBugs),
+      sortMostRecent() {
+        bugsService.sortMostRecent()
+      },
       sortOpenFirst() {
         bugsService.sortOpenFirst()
       },
@@ -73,5 +77,10 @@ export default {
 }
 .hoverable{
   cursor: pointer;
+}
+.dynamic-flex{
+  @media screen and (min-width: 1236px) {
+    display: flex;
+  }
 }
 </style>
